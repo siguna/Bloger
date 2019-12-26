@@ -26,6 +26,9 @@ public class BaiViet {
 	@ManyToOne
 	@JoinColumn(name = "nguoitao")
 	private TaiKhoan nguoiTao;
+	
+	@ManyToOne
+	@JoinColumn(name = "menu")
 	private Menu menu;
 
 	@ManyToMany(mappedBy = "listBaiVietDaLike")

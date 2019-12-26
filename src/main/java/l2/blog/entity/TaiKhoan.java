@@ -18,7 +18,7 @@ public class TaiKhoan {
 	private boolean admin;
 	private Date ngaytao;
 	private Date ngaysua;
-	@OneToMany(mappedBy = "taikhoan")
+	@OneToMany(mappedBy = "taiKhoan")
 	private List<Comment> listComment;
 	@OneToMany(mappedBy = "nguoiTao")
 	private List<BaiViet> listBaiViet;
