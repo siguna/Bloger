@@ -9,16 +9,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-@Entity(name = "taikhoan")
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+@Entity
+@Table(name = "taikhoan")
 public class TaiKhoan {
 
 	@Id
 	private String tendangnhap;
 	private String matkhau;
 	private boolean admin;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date ngaytao;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date ngaysua;
 	@OneToMany(mappedBy = "taiKhoan")
+	@JsonBackReference
 	private List<Comment> listComment;
 	@OneToMany(mappedBy = "nguoiTao")
 	private List<BaiViet> listBaiViet;
@@ -27,6 +35,7 @@ public class TaiKhoan {
 		joinColumns = @JoinColumn(name="taikhoan"),
 		inverseJoinColumns = @JoinColumn(name="baiviet")
 			)
+	@JsonBackReference
 	private List<BaiViet> listBaiVietDaLike;
 	public String getTendangnhap() {
 		return tendangnhap;

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import l2.blog.entity.Menu;
 
 @Repository
-public interface MenuCrud extends CrudRepository<Menu, Integer> {
+public interface MenuCrud extends CrudRepository<Menu, Long> {
 
 }

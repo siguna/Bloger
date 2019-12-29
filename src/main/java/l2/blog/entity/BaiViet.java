@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Entity(name = "baiviet")
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name = "baiviet")
 public class BaiViet {
 
 	@Id
@@ -19,16 +24,20 @@ public class BaiViet {
 	private long id;
 	private String tieude;
 	private String noidung;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date ngaytao;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date ngaysua;
 	private String avatar;
 	private long soview;
 	@ManyToOne
 	@JoinColumn(name = "nguoitao")
+	@JsonBackReference
 	private TaiKhoan nguoiTao;
 	
 	@ManyToOne
 	@JoinColumn(name = "menu")
+	
 	private Menu menu;
 
 	@ManyToMany(mappedBy = "listBaiVietDaLike")

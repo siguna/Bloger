@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import l2.blog.entity.Comment;
 @Repository
-public interface CommentCrud extends CrudRepository<Comment, Integer> {
+public interface CommentCrud extends CrudRepository<Comment, Long> {
 
 }

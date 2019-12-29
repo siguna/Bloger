@@ -20,28 +20,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserDetailsService userDetailService;
 
+	
+	
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	public PasswordEncoder passwordEncoder1() {
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Autowired
+	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// TODO Auto-generated method stub
-		auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder1());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
-		http
-			.authorizeRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers("/admin").hasRole("Admin")
-				.and()
-			.exceptionHandling()
-                .accessDeniedPage("/403");
-			
+		
+		http.authorizeRequests()
+			.antMatchers("/").permitAll()
+			.antMatchers("/admin").hasRole("ADMIN")
+		.and()
+			.csrf()
+				.disable();
+		
 	}
 	
 	
